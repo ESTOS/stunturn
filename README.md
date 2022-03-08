@@ -23,6 +23,7 @@ Quick start:
 ```
 docker run -d --name stunturn --network host --restart always \
 -e EXTERNAL_IP_ADDRESS=YourExternalIPAddress \ 
+-e LISTENING_IP_ADDRESS=YourLocalIPAddress \
 -e TURN_PORT=3478 \
 -e TURN_USERNAME=YourTurnUsername \
 -e TURN_PASSWORD=YourTurnPassword \
@@ -30,8 +31,8 @@ estos/stunturn
 
 ```
 
-## Get logs and info
-In order to get logs, use the following command:
+## Get UCServer configuration info
+In order to get configuration info, use the following command:
 ```
 docker logs stunturn
 ```
@@ -50,11 +51,28 @@ TURN username: stunturn
 TURN password: RLYmta9lTFQM0ClqECWq
 ```
 
+## Diagnostic logs
+Logs are stored in local file within the container in the following name format: `/var/tmp/stunturn_DD_MM_YYYY.log`
+
+To list them run:
+
+```
+docker exec stunturn ls /var/tmp/
+```
+
+to print out a specific one (e.g. from 26/04/2022):
+
+```
+docker exec stunturn cat /var/tmp/stunturn_26_04_2022.log
+```
+
+
 ## Parameters
 
 | Parameter | Mandatory | Default | Description |
 |---|---|---|---|
-| EXTERNAL_IP_ADDDRESS | Yes | NA | Public IP address the STUN/TURN server will listen to
+| LISTENING_IP_ADDRESS | No | All interfaces | Local IP for STUN/TURN to listen on. If not set: will listen to all local Network interfaces
+| EXTERNAL_IP_ADDDRESS | No | Autodetected | Public IP address the STUN/TURN will use as relay address. Useful in NATted scenarios. Will be autodetected if not set.
 | TURN_PORT | No | 3478 | TCP port (for TURN) and UDP port (for STUN) the STUN/TURN server will listen to
 | TURN_USERNAME| No | stunturn | Username for TURN authentication
 | TURN_PASSWORD | No| random_string | Password for TURN authentication
