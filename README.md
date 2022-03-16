@@ -66,6 +66,8 @@ to print out a specific one (e.g. from 26/04/2022):
 docker exec stunturn cat /var/tmp/stunturn_26_04_2022.log
 ```
 
+Log level is, by default, set to "normal".  
+More verbose log levels can be set with the LOG_LEVEL environment variable (see details below).
 
 ## Parameters
 
