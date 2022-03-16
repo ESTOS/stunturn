@@ -34,6 +34,23 @@ then
     echo "No TURN_PASSWORD env variable set, generated a random one: "$TURN_PASSWORD
 fi
 
+case $LOG_LEVEL in
+
+    moderate)
+        echo "Log level set to moderate"
+        $LOG_LEVEL_OPTS=" -v"
+        ;;
+    
+    debug)
+        echo "Log level set to debug"
+        $LOG_LEVEL_OPTS=" -V"
+        ;;
+    
+    *)
+        echo "Log level set to normal (default)"
+        $LOG_LEVEL_OPTS=""
+esac
+
 echo "Created TURN user '"$TURN_USERNAME"' with password '"$TURN_PASSWORD"'. Please use said credentials into your estos application"
 echo "Executing TURN service... "
 

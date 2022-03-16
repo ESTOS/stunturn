@@ -76,3 +76,4 @@ docker exec stunturn cat /var/tmp/stunturn_26_04_2022.log
 | TURN_PORT | No | 3478 | TCP port (for TURN) and UDP port (for STUN) the STUN/TURN server will listen to
 | TURN_USERNAME| No | stunturn | Username for TURN authentication
 | TURN_PASSWORD | No| random_string | Password for TURN authentication
+| LOG_LEVEL | No | normal | allowed values: 'moderate','debug'
