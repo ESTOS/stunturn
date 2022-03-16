@@ -38,17 +38,16 @@ case $LOG_LEVEL in
 
     moderate)
         echo "Log level set to moderate"
-        $LOG_LEVEL_OPTS=" -v"
+        LOG_LEVEL_OPTS=" -v"
         ;;
     
     debug)
         echo "Log level set to debug"
-        $LOG_LEVEL_OPTS=" -V"
+        LOG_LEVEL_OPTS=" -V"
         ;;
     
     *)
         echo "Log level set to normal (default)"
-        $LOG_LEVEL_OPTS=""
 esac
 
 echo "Created TURN user '"$TURN_USERNAME"' with password '"$TURN_PASSWORD"'. Please use said credentials into your estos application"
@@ -65,4 +64,4 @@ echo "More information at https://help.estos.com/help/en-US/procall/7.3/ucserver
 exec /usr/bin/turnserver -n -r defaultrealm --no-tls --no-dtls --no-cli \
 --pidfile /var/tmp/turnserver.pid -l /var/tmp/stunturn.log \
 -a -u $TURN_USERNAME:$TURN_PASSWORD \
--p $TURN_PORT -X $EXTERNAL_IP_ADDRESS $LISTENING_IP_ADDRESS_OPTS
+-p $TURN_PORT -X $EXTERNAL_IP_ADDRESS $LISTENING_IP_ADDRESS_OPTS $LOG_LEVEL_OPTS
