@@ -1,0 +1,14 @@
+coturn_server_estos:
+    image: estos/stunturn
+    container_name: stunTurnEstos
+    restart: on-failure
+    ports:
+      - "3478:3478/udp"
+      - "3478:3478/tcp"
+    environment:
+      - LISTENING_IP_ADDRESS=0.0.0.0
+      - EXTERNAL_IP_ADDDRESS=xxx.xxx.xxx.xxx
+      - TURN_PORT=3478
+      - TURN_USERNAME=<user>
+      - TURN_PASSWORD=<passwort>
+      - LOG_LEVEL=moderat
